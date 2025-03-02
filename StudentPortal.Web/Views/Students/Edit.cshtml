@@ -1,0 +1,77 @@
+﻿@model StudentPortal.Web.Models.Entities.StudentEntry
+
+<h1 class="stdedit-text" style="font-size: 3rem; font-weight: bold; margin-right: 70px;">Edit Student</h1>
+
+<div class="info-section">
+    @if (Model == null)
+    {
+        <p>No Student was found with this ID</p>
+    }
+    else
+    {
+        <form method="post">
+
+            <div class="mt-3">
+                <label class="form-label">Id</label>
+                <input type="text" class="form-control" asp-for="Id" readonly />
+            </div>
+            <div class="mt-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" asp-for="FName" />
+                <span asp-validation-for="FName" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Middle Name</label>
+                <input type="text" class="form-control" asp-for="MName" />
+                <span asp-validation-for="MName" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" asp-for="LName" />
+                <span asp-validation-for="LName" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Course</label>
+                <input type="text" class="form-control" asp-for="Course" />
+                <span asp-validation-for="Course" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label for="year">Year</label>
+                <select class="form-control" asp-for="Year">
+                    <option value="">-- Select Year --</option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                </select>
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" asp-for="Phone" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Remarks">Remarks:</label>
+                <select class="form-control" asp-for="Remarks">
+                    <option value="">-- Select Remark --</option>
+                    <option value="Cross-Enrollee">Cross-Enrollee</option>
+                    <option value="Transferee">Transferee</option>
+                    <option value="New Student">New Student</option>
+                    <option value="Old Student">Old Student</option>
+                </select>
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="@Url.Action("List", "Students")" class="btn btn-secondary ms-3">Cancel</a>  <!-- Cancel Button -->
+            </div>
+        </form>
+    }
+</div>

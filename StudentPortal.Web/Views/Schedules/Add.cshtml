@@ -1,0 +1,112 @@
+﻿@model StudentPortal.Web.Models.AddScheduleViewModel
+
+<div class="addschedule-container mt-5">
+    <h1 class="text-center mb-4" style="font-size: 3rem; font-weight: bold; margin-right: 30px;">Add Schedule</h1>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form method="post">
+        <div class="row mb-3">
+            <div class="form-group mt-3">
+                <label class="form-label">Subject Name</label>
+                <input type="text" class="form-control" asp-for="SubjectName" id="SubjectName" readonly />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">Subject Schedule</label>
+                <input type="text" class="form-control" id="SubjectSchedule" readonly />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">Subject EDP</label>
+                <input type="text" class="form-control" asp-for="SubjectEDP" id="SubjectEDP" />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">Subject ID</label>
+                <input type="text" class="form-control" id="SubjectID" readonly />
+            </div>
+        </div>
+        <br />
+        <div class="row mb-3">
+            <div class="form-group mt-3">
+                <label class="form-label">Start Time</label>
+                <input type="time" class="form-control" asp-for="StartTime" />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">End Time</label>
+                <input type="time" class="form-control" asp-for="EndTime" />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">Section ID</label>
+                <input type="text" class="form-control" asp-for="SectionId" id="Id" />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">Room</label>
+                <input type="text" class="form-control" asp-for="Room" placeholder="Room Number or Location" />
+            </div>
+            <br />
+            <div class="form-group mt-3">
+                <label class="form-label">Additional Notes</label>
+                <textarea class="form-control" asp-for="Notes" rows="3" placeholder="Any additional notes"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Save Schedule</button>
+            <a href="@Url.Action("List", "Schedules")" class="btn btn-secondary ms-3">Cancel</a>  <!-- Cancel Button -->
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#SubjectEDP').on('keypress', function (e) {
+            if (e.which == 13) {  // 13 is the Enter key
+                e.preventDefault();  // Prevent form submission when Enter is pressed
+
+                var subjectEDP = $(this).val();
+                if (subjectEDP) {
+                    $.ajax({
+                        url: '@Url.Action("GetSubjectDetails", "Schedules")',
+                        type: 'GET',
+                        data: { subjectEDP: subjectEDP },
+                        success: function (data) {
+                            if (data.subjectName) {
+                                $('#SubjectName').val(data.subjectName);
+                                $('#SubjectSchedule').val(data.subjectSchedule);  // Populate Subject Schedule
+                                $('#SubjectID').val(data.subjectID);  // Populate SubjectID
+                            } else {
+                                $('#SubjectName').val('Subject Not Found');
+                                $('#SubjectSchedule').val('Schedule Not Found');  // Handle error message
+                                $('#SubjectID').val('');  // Clear SubjectID if not found
+                            }
+                        },
+                        error: function () {
+                            $('#SubjectName').val('Subject Not Found');
+                            $('#SubjectSchedule').val('Schedule Not Found');
+                            $('#SubjectID').val('');  // Clear SubjectID on error
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}
+
+

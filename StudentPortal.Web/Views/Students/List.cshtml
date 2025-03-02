@@ -1,0 +1,90 @@
+﻿@model List<StudentPortal.Web.Models.Entities.StudentEntry>
+
+<div class="liststudents-container mt-5">
+    <h1 class="text-center mb-4" style="font-size: 3rem; font-weight: bold; margin-right: 30px;">List of All Students</h1>
+
+    <!-- Search Form -->
+    <form method="get" asp-action="List" class="mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="input-group">
+                <input type="text" class="search-container" name="searchStudentID" value="@ViewData["searchStudentID"]" placeholder="Search by Student's ID" />
+                <button class="btn-search btn-primary" type="submit">Search</button>
+            </div>
+            <div class="reload-btn">
+                <!-- Reload Button -->
+                <a href="@Url.Action("List", "Students")" class="btn btn-secondary">Reload</a>
+            </div>
+            <a asp-action="Add" class="btn btn-primary">Add New Student</a>
+        </div>
+    </form>
+
+    @if (Model == null || !Model.Any())
+    {
+        <p class="text-center">No Students found!</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Email</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.FName</td>
+                        <td>@student.MName</td>
+                        <td>@student.LName</td>
+                        <td>@student.Course</td>
+                        <td>@student.Year</td>
+                        <td>@student.Email</td>
+                        <td>@student.Remarks</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteModal('@student.Id')">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this student?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" method="post" asp-controller="Students" asp-action="Delete">
+                        <input type="hidden" id="deleteStudentId" name="id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function setDeleteModal(studentId) {
+        document.getElementById('deleteStudentId').value = studentId;
+    }
+</script>

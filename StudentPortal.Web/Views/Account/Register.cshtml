@@ -1,0 +1,144 @@
+﻿@model StudentPortal.Web.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="background-image-1"></div>
+<div class="form-section">
+    <div class="form-container">
+        <h2 class="form-title">Register</h2>
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class=" row">
+                <div class=col-md-6 mb-3 mt-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label"></label>
+                <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-8 mt-4">
+                    <a asp-action="Login" class="form-check-label text-decoration-none">Already have an account?</a>
+                </div>
+                <div class="col-4 mt-4">
+                    <button type="submit" class="submit-btn float-end">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .background-image-1 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../images/confetti.JPG');
+        background-repeat: no-repeat;
+        background-size: cover; /* Ensures the image covers the entire background */
+        justify-content: center; /* Horizontally centers the image */
+        opacity: 0.7;
+        z-index: -5;
+    }
+
+    .form-section {
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        min-height: 100vh;
+        margin-left: 200px;
+    }
+
+    .form-container {
+        background-color: rgba(13, 13, 13, 0.8);
+        border-radius: 15px;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 90%;
+        max-width: 600px;
+        border-top: 8px solid #282899;
+        border-left: 4px solid #141454;
+        border-right: 4px solid #07072c;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-title {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    .form-label, .form-check-label {
+        font-weight: 600;
+        color: white;
+        text-align: left; /* Ensures left alignment */
+        display: block; /* Makes the label span the full width for proper alignment */
+    }
+
+    .form-control, .form-select {
+        border: 1.5px solid #141454;
+        border-radius: 10px;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #07072c;
+            box-shadow: none;
+        }
+
+    .submit-btn {
+        background-color: #282899;
+        border-color: #282899;
+        color: white;
+        font-weight: 600;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+        .submit-btn:hover {
+            background-color: #282899;
+        }
+
+    .text-decoration-none {
+        color: white;
+        font-weight: 500;
+        transition: color 0.2s ease-in-out;
+    }
+
+        .text-decoration-none:hover {
+            color: #07072c;
+        }
+</style>
+

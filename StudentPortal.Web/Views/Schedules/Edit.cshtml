@@ -1,0 +1,44 @@
+﻿@model StudentPortal.Web.Models.EditScheduleViewModel
+
+<div class="edit-section mt-5">
+    <h1 class="text-center mb-4" style="font-size: 3rem; font-weight: bold; margin-right: 30px;">Edit Schedule</h1>
+
+    <form method="post">
+        <div class="edit-row-section row mb-3">
+            <div class="form-group mt-3">
+                <div class="col-md-12">
+                    <label class="form-label">Section ID</label>
+                    <input type="text" class="form-control" asp-for="SectionId" placeholder="Enter your section ID Ex. 1A - 1B - 1C" readonly />
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <label class="form-label">Start Time</label>
+                    <input type="time" class="form-control" asp-for="StartTime" />
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <label class="form-label">End Time</label>
+                    <input type="time" class="form-control" asp-for="EndTime" />
+                </div>
+				<br />
+				<div class="col-md-12">
+                    <label class="form-label">Room</label>
+                    <input type="text" class="form-control" asp-for="Room" placeholder="Room Number or Location" />
+                </div>
+				<br />
+                <div class="col-md-12">
+                    <label class="form-label">Additional Notes</label>
+                    <textarea class="form-control" asp-for="Notes" rows="3" placeholder="Any additional notes"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="@Url.Action("List", "Schedules")" class="btn btn-secondary ms-3">Cancel</a>  <!-- Cancel Button -->
+        </div>
+    </form>
+    <!-- Validation Summary -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+</div>

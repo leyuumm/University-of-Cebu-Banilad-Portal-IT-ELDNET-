@@ -1,0 +1,115 @@
+﻿@model StudentPortal.Web.Models.EditSubjectViewModel
+
+<div class="edit-container mt-5">
+    <h1 class="text-center mb-4" style="font-size: 3rem; font-weight: bold; margin-right: 30px;">Edit Subject</h1>
+
+    <form method="post">
+
+        <!-- Hidden field for SubjectID -->
+        <input type="hidden" asp-for="SubjectID" />
+
+        <div class="form-group mt-3">
+            <label class="form-label">Subject EDP</label>
+            <input type="text" class="form-control" asp-for="SubjectEDP" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Subject Name</label>
+            <input type="text" class="form-control" asp-for="SubjectName" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label" for="subject">Subject Schedule (Hold CTRL to select multiple)</label>
+            <select class="form-control" asp-for="SubjectSchedule" id="subjectSchedule" multiple>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+            </select>
+            <!-- Display validation error if no schedule is selected -->
+            <span asp-validation-for="SubjectSchedule" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" asp-for="Description" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Unit</label>
+            <input type="number" class="form-control" asp-for="Unit" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Offering</label>
+            <select class="form-control" asp-for="Offering">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Category</label>
+            <select class="form-control" asp-for="Category">
+                <option value="LEC">LEC</option>
+                <option value="LAB">LAB</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Course Code</label>
+            <select class="form-control" asp-for="CourseCode">
+                <option value="BSIT">BSIT</option>
+                <option value="AB-PSYCH">AB-PSYCH</option>
+                <option value="BSMT">BSMT</option>
+                <option value="BSN">BSN</option>
+                <!-- Add more course codes here -->
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="form-label">Curriculum Year</label>
+            <select class="form-control" asp-for="CurriculumYear">
+                <option value="2025-2026">2025-2026</option>
+                <option value="2026-2027">2026-2027</option>
+                <!-- Add more curriculum years here -->
+            </select>
+        </div>
+
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-primary" id="saveChangesButton" disabled>Save Changes</button>
+            <a href="@Url.Action("List", "SubjectEntry")" class="btn btn-secondary ms-3">Cancel</a>  <!-- Cancel Button -->
+        </div>
+
+    </form>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const scheduleSelect = document.getElementById('subjectSchedule');
+        const saveButton = document.getElementById('saveChangesButton');
+
+        // Store the initial selections as an array
+        const initialSchedules = Array.from(scheduleSelect.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+
+        // Function to check for changes
+        function checkForChanges() {
+            const currentSelections = Array.from(scheduleSelect.options)
+                .filter(option => option.selected)
+                .map(option => option.value);
+
+            // Enable the button only if current selections differ from initial selections
+            saveButton.disabled = JSON.stringify(currentSelections) === JSON.stringify(initialSchedules);
+        }
+
+        // Check when an option is changed
+        scheduleSelect.addEventListener('change', checkForChanges);
+    });
+</script>

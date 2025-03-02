@@ -1,0 +1,179 @@
+﻿@model StudentPortal.Web.Models.AddStudentEnrollmentViewModel
+
+<div class="addStudentEnrollment mt-5">
+    <h1 class="text-center mb-4" style="font-size: 3rem; font-weight: bold; margin-right: 30px;">Student Enrollment</h1>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form id="studentEnrollmentForm" method="post">
+        <div class="row mb-3">
+            <!-- Student Information Section (Left Side) -->
+            <div class="col-md-6">
+                <div class="form-group mt-3">
+                    <label for="StudentId">Student ID</label>
+                    <input type="text" id="StudentId" name="Id" class="form-control" placeholder="Enter your Student ID here, then press Enter to fillup the others" required>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="FName">First Name</label>
+                    <input type="text" id="FName" name="FName" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="MName">Middle Name</label>
+                    <input type="text" id="MName" name="MName" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="LName">Last Name</label>
+                    <input type="text" id="LName" name="LName" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="Course">Course</label>
+                    <input type="text" id="Course" name="Course" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="Year">Year</label>
+                    <input type="text" id="Year" name="Year" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="Remarks">Remarks</label>
+                    <input type="text" id="Remarks" name="Remarks" class="form-control" readonly>
+                </div>
+            </div>
+
+            <!-- Schedule Information Section (Right Side) -->
+            <div class="col-md-6">
+                <div class="form-group mt-3">
+                    <label for="SectionId">Section ID</label>
+                    <input type="text" id="SectionId" name="SectionId" class="form-control" placeholder="Enter your Section ID here, then press Enter to fillup the others" required>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="SubjectName">Subject Name</label>
+                    <input type="text" id="SubjectName" name="SubjectName" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="SubjectEDP">Subject EDP</label>
+                    <input type="text" id="SubjectEDP" name="SubjectEDP" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="StartTime">Start Time</label>
+                    <input type="text" id="StartTime" name="StartTime" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="EndTime">End Time</label>
+                    <input type="text" id="EndTime" name="EndTime" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="SubjectSched">Subject Schedule</label>
+                    <input type="text" id="SubjectSched" name="SubjectSched" class="form-control" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="Room">Room</label>
+                    <input type="text" id="Room" name="Room" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="@Url.Action("List", "StudentEnrollment")" class="btn btn-secondary ms-3">Cancel</a> <!-- Cancel Button -->
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Fetch student details when Student ID is entered and Enter key is pressed
+            $('#StudentId').on('keypress', function (e) {
+                if (e.which == 13) {  // 13 is the Enter key
+                    e.preventDefault();  // Prevent form submission when Enter is pressed
+
+                    var studentId = $(this).val();
+                    if (studentId) {
+                        $.ajax({
+                            url: '@Url.Action("GetStudentDetails", "StudentEnrollment")',
+                            type: 'GET',
+                            data: { studentId: studentId },
+                            success: function (data) {
+                                if (data.firstName) {
+                                    $('#FName').val(data.firstName);
+                                    $('#MName').val(data.middleName);
+                                    $('#LName').val(data.lastName);
+                                    $('#Course').val(data.course);
+                                    $('#Year').val(data.year);
+                                    $('#Remarks').val(data.remarks);
+                                } else {
+                                    $('#FName').val('Student Not Found');
+                                    $('#MName').val('Student Not Found');
+                                    $('#LName').val('Student Not Found');
+                                    $('#Course').val('Student Not Found');
+                                    $('#Year').val('Student Not Found');
+                                    $('#Remarks').val('Student Not Found');
+                                }
+                            },
+                            error: function () {
+                                $('#FName').val('Student Not Found');
+                                $('#MName').val('Student Not Found');
+                                $('#LName').val('Student Not Found');
+                                $('#Course').val('Student Not Found');
+                                $('#Year').val('Student Not Found');
+                                $('#Remarks').val('Student Not Found');
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Fetch schedule details when Section ID is entered and Enter key is pressed
+            $('#SectionId').on('keypress', function (e) {
+                if (e.which == 13) {  // 13 is the Enter key
+                    e.preventDefault();  // Prevent form submission when Enter is pressed
+
+                    var sectionId = $(this).val();
+                    if (sectionId) {
+                        $.ajax({
+                            url: '@Url.Action("GetSubjectDetails", "StudentEnrollment")',
+                            type: 'GET',
+                            data: { sectionId: sectionId },
+                            success: function (data) {
+                                if (data.subjectName) {
+                                    $('#SubjectName').val(data.subjectName);
+                                    $('#SubjectEDP').val(data.subjectEDP);
+                                    $('#StartTime').val(data.startTime);
+                                    $('#EndTime').val(data.endTime);
+                                    $('#SubjectSched').val(data.subjectSched);
+                                    $('#Room').val(data.room);
+                                } else {
+                                    $('#SubjectName').val('Subject Not Found');
+                                    $('#SubjectEDP').val('Subject Not Found');
+                                    $('#StartTime').val('');
+                                    $('#EndTime').val('');
+                                    $('#SubjectSched').val('Subject Not Found');
+                                    $('#Room').val('Subject Not Found');
+                                }
+                            },
+                            error: function () {
+                                $('#SubjectName').val('Subject Not Found');
+                                $('#SubjectEDP').val('Subject Not Found');
+                                $('#StartTime').val('');
+                                $('#EndTime').val('');
+                                $('#SubjectSched').val('Subject Not Found');
+                                $('#Room').val('Subject Not Found');
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+}

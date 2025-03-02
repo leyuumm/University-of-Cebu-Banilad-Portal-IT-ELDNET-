@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="background-image">
+    <div class="container-fluid p-0 m-0">
+        <div class="hero-section">
+
+            <div class="left-content">
+                <!-- new content -->
+                <h2>University of Cebu - Empowering Your Future</h2>
+                <p>University of Cebu offers affordable and quality education responsive to the demands of local and international communities.</p>
+                <a href=@Url.Action("About", "Home") class="btn btn-warning btn-lg">About Us</a>
+            </div>
+
+            <div class="hero-content">
+                <h1 class="display-4">LEARNING TODAY</h1>
+                <h1 class="display-4">LEADING TOMORROW</h1>
+                <p>Online Registration is now going on...</p>
+                <a href="@Url.Action("Privacy", "Home")" class="btn btn-warning btn-lg">Enroll Now</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+

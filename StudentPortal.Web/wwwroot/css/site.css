@@ -1,0 +1,529 @@
+html {
+    font-size: 14px;
+}
+
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    font-size: 14px; /* Base font size */
+}
+
+/* Removing the default Bootstrap padding from container */
+.container, .container-fluid {
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.uc-navlogo {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navbar-collapse {
+    margin-left: 30px;
+}
+
+header {
+    position: relative; /* Ensure it positions relative to the page */
+    z-index: 10; /* Higher z-index to stay above the background */
+}
+
+footer {
+    background-color: transparent;
+}
+
+.add-container {  /* For the padding of each cshtml */
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-left: 150px;
+}
+
+.list-container {
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-left: 150px;
+}
+
+.footertext { /* For the footershet */
+    padding-top: 1px;
+    margin-left: 10px;
+}
+
+.display-4 {
+    font-family: 'Sitka Heading','Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font family */
+    font-size: 24px; /* Font size */
+    font-weight: normal; /* Font weight (normal, bold, etc.) */
+    color: #333; /* Text color */
+    text-align: center; /* Align the text to the center */
+}
+
+/* Navbar and Link Styling */
+.nav-link {
+    color: white !important; /* Set link text color to white */
+}
+
+.nav-link:hover {
+    color: lightgray !important; /* Optionally, set a hover color */
+}
+
+.navbar-brand {
+    color: white !important; /* Also make the brand white for consistency */
+}
+
+.dropdown-menu {
+    background-color: rgb(7, 7, 44); /* Set dropdown menu background to match the navbar */
+}
+
+.dropdown-item {
+    color: white !important; /* Set dropdown items text color to white */
+}
+
+.dropdown-item:hover {
+    background-color: lightgray; /* Set dropdown hover background */
+    color: black; /* Set dropdown item text hover color */
+}
+
+.background-image {
+    background-image: url('../images/yose.JPG'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh; /* Full viewport height */
+    top: 0;
+    left: 0;
+    z-index: -999; /* Make sure it stays behind the navbar and content */
+}
+
+.hero-section {
+    display: flex;
+    justify-content: space-between; /* Space between the left content and the hero content */
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    position: relative;
+}
+
+.left-content {
+    margin-bottom: 380px;
+    flex: 1;
+    background: rgba(0, 0, 0, 0.6); /* Dark background for contrast */
+    padding: 20px;
+    color: white;
+    text-align: left;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+.hero-content {
+    margin-top: 350px;
+    margin-right: 20px;
+    flex: 1;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-content h1, .hero-content p {
+    margin: 0;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content a, .left-content a {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: orange;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hero-content a:hover, .left-content a:hover {
+    background-color: darkorange;
+}
+
+.btn {
+    margin-top: 50px;
+    z-index: 5; /* Increase z-index to keep it above the footer */
+}
+
+/***MAP SECTION CCS - START ***/
+.mapouter {
+    position: relative;
+    text-align: right;
+    height: 400px;
+    width: 116%;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 400px;
+    width: 100%;
+}
+/***MAP SECTION CCS - END ***/
+
+
+/**** ABOUT SECTION CSS - START ****/
+.about-main {
+    background-image: url('../images/sayose.JPG'); /* Replace with the correct image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 70vh; /* Adjust height for better integration */
+    position: relative;
+}
+
+.about-section {
+    width: 100vw; /* Set full viewport width */
+    background-color: rgb(7, 7, 44);
+    color: white;
+    padding: 60px 0;
+}
+
+.row.w-100 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.row {
+    margin: 0 !important; /* Remove default row margin */
+}
+
+.aboutword-content {
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 10px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background for contrast */
+}
+
+.aboutword-content h1 {
+    font-family: 'Sitka Heading', 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-size: 4rem;
+    color: white;
+    margin: 0;
+}
+
+.about-text p {
+    line-height: 3.0;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+    padding: 10px;
+    font-weight: 400;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .about-main {
+        height: 40vh;
+    }
+
+    .aboutword-content h1 {
+        font-size: 3rem;
+    }
+
+    .about-section {
+        padding: 40px 10px;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+    }
+}
+/**** ABOUT SECTION CSS - END ****/
+
+
+
+
+
+/**** ENROLLMENT SECTION CSS - START ****/
+.enrollment-main {
+    background-image: url('../images/yosestitik.JPG'); /* Replace with the correct image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 70vh; /* Adjust height for better integration */
+    position: relative;
+}
+
+.enrollmentword-content {
+    margin-bottom: 100px;
+    margin-left: 70px;
+    max-width: 1000px;
+    padding: 30px;
+    border-radius: 30px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background for contrast */
+}
+
+.enrollmentword-content h1 {
+    font-family: 'Sitka Heading', Calibri, Tahoma, Verdana, sans-serif;
+    font-size: 4rem;
+    color: white;
+    margin: 0;
+}
+
+.requirement-text {
+    font-family: 'Sitka Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3, 2, 34, 0.8); /* Tint color with transparency */
+    z-index: 1; /* Places the overlay above the image */
+    border-radius: inherit; /* Matches the rounded corners */
+}
+
+.image-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit; /* Matches the border-radius of the wrapper */
+}
+
+.image-wrapper:hover::before {
+    background-color: rgba(3, 2, 34, 0.5); /* Lighter tint on hover */
+}
+
+/***FOOTER - START***/
+.current-page {
+    text-decoration: none;
+    color: #E95C0E;
+}
+
+.m-2 {
+    margin: .10rem !important;
+}
+
+.social-media a {
+    margin-top: 30px;
+    padding-left: 35px;
+    text-decoration: none;
+}
+
+.quick-navigation li {
+    display: list-item;
+    unicode-bidi: isolate;
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.quick-navigation a {
+    text-decoration: none;
+}
+
+.left-socmedcontent {
+    padding-left: 30px;
+}
+/***FOOTER - END***/
+/**** ENROLLMENT SECTION CSS - END ****/
+
+
+
+
+
+/**** EDIT STUDENT SECTION CSS - START ****/
+.info-section {
+    padding-left: 15%;
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+.stdedit-text {
+    padding-left: 50%;
+    padding-top: 40px;
+}
+/**** EDIT STUDENT SECTION CSS - END ****/
+
+
+/**** EDIT SUBJECT SECTION CSS - START ****/
+.edit-container {
+    padding-left: 15%;
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+.text-center {;
+    padding-top: 20px;
+    padding-left: 38px;
+}
+/**** EDIT SUBJECT SECTION CSS - END ****/
+
+
+
+/**** SEARCH BAR STYLING - START ****/
+.input-group {
+    max-width: 400px; /* Set a max width for better control */
+    margin-left: 0;
+}
+
+.input-group input {
+    border-radius: 25px 0 0 25px; /* Rounded left side */
+    padding: 10px;
+    font-size: 14px;
+}
+
+.input-group button {
+    border-radius: 0 25px 25px 0; /* Rounded right side */
+    font-size: 14px;
+    padding: 10px 15px;
+}
+
+.search-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.btn-search {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+/**** SEARCH BAR STYLING - END ****/
+
+/**** RELOAD BTN STYLING - START ****/
+.reload-btn {
+    margin-left: 44%;
+}
+/**** RELOAD BTN STYLING - END ****/
+
+/**** ADD STUDENT ENROLLMENT STYLING - START ****/
+.addStudentEnrollment {
+    margin-left: 70px;
+    padding-left: 150px;
+    padding-top: 20px;
+    padding-bottom: 55px;
+}
+/**** ADD STUDENT ENROLLMENT END - START ****/
+
+
+/**** EDIT SCHEDULE SECTION CSS - START ****/
+.edit-row-section {
+    padding-left: 6%;
+}
+.edit-section {
+    padding-left: 100px;
+    padding-bottom: 50px;
+}
+/**** EDIT SCHEDULE SECTION CSS - END ****/
+
+/**** ADD SCHEDULE SECTION CSS - START ****/
+.addschedule-container {
+    padding-left: 15%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+/**** ADD SCHEDULE SECTION CSS - END ****/
+
+/**** ADD STUDENT SECTION CSS - START ****/
+.addstudent-container {
+    padding-left: 15%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.addStudentEnrollment .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.addStudentEnrollment .col-md-6 {
+    width: 50%;
+    padding: 30px;
+}
+
+.addStudentEnrollment .form-group {
+    margin-bottom: 15px;
+}
+
+.addStudentEnrollment .alert-danger {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .addStudentEnrollment .col-md-6 {
+        width: 100%;
+    }
+}
+/**** ADD STUDENT SECTION CSS - END ****/
+
+/**** ADD SUBJECT SECTION CSS - START ****/
+.addsubject-container {
+    padding-left: 15%;
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+/**** ADD SUBJECT SECTION CSS - END ****/
+
+/**** LIST SCHEDULES SECTION CSS - START ****/
+.listschedules-container {
+    padding-left: 13%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+/**** LIST SCHEDULES SECTION CSS - END ****/
+
+/**** LIST STUDENT ENROLLMENT SECTION CSS - START ****/
+.liststudentenrollment-container {
+    margin-left: 11%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+/**** LIST STUDENT ENROLLMENT SECTION CSS - END ****/
+
+/**** LIST STUDENTS SECTION CSS - START ****/
+.liststudents-container {
+    padding-left: 13%;
+    padding-top: 10px;
+    padding-bottom: 60px;
+}
+/**** LIST STUDENTS SECTION CSS - END ****/
+
+/**** LIST SUBJECTS SECTION CSS - START ****/
+.listsubjects-container {
+    padding-left: 13%;
+    padding-top: 10px;
+    padding-bottom: 60px;
+}
+/**** LIST SUBJECTS SECTION CSS - END ****/
